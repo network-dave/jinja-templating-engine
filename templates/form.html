@@ -1,0 +1,21 @@
+<html>
+<body>
+<div>
+<h2>Jinja Templating Engine - Form Generator</h2>
+<h3>{{ template_name }}</h3>
+</div>
+<div>
+    <form method="POST" action="/templates/{{ template_name }}">
+        <fieldset class="form-field">
+        {% for var in form.variables %}
+            <p>
+            {{ form[var].label }}:
+            {{ form[var] }}
+            </p>
+        {% endfor %}
+        </fieldset>
+        <p>{{ form.submit }}</p>
+    </form>
+</div>
+</body>
+</html>

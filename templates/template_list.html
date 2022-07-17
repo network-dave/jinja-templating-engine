@@ -1,0 +1,20 @@
+<html>
+<body>
+<div>
+<h2>Templating Engine API</h2>
+</div>
+<div>
+<h3>Available Jinja2 templates:</h3>
+  <ul>
+    {% for i in items %}
+     <li> <a href="/api/{{ template_folder }}/{{ i }}">{{ i }}</a> </li>
+    {% endfor %}
+  <ul>
+</div>
+<div>
+<h3>Usage:</h3>
+<p>Send a POST request to /api/templates/&lttemplate-name&gt with the variables to be rendered encoded in JSON inside the body of the request.</p>
+<p>You will receive back the rendered template inside a JSON string under the "result" key.</p>
+</div>
+</body>
+</html>
