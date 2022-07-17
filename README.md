@@ -2,11 +2,11 @@
 
 ## About 
 
-The Jinja Templating Engine is a REST API developped in Flask that permit quick rendering of Jinja2 templates through a simple API call.
+The Jinja Templating Engine is a REST API and Web GUI developped in Flask that allows quick and easy rendering of Jinja2 templates.
 
-You can also browse to the Templating Engine's URL to display a web page listing all available templates, with the possibility to view the raw template files.
+You can browse all available templates, with the possibility to either use them with the automatic form generator, or view the raw template files.
 
-The goal of this project is to provide a microservice / API to quickly render Jinja2 templates without depending on any specific web front-end (I'm a network engineer and I use this to render network device configurations from data coming from web forms).
+The goal of this project is to provide 2 services: a microservice / API to quickly render Jinja2 templates without depending on any specific web front-end, and a tool to automatically generate simple web forms from any Jinja2 template (I'm a network engineer and I use this to render network device configuration).
 
 
 
