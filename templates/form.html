@@ -7,7 +7,7 @@
 <div>
     <form method="POST" action="/templates/{{ template_name }}">
         <fieldset class="form-field">
-        {% for var in form.variables %}
+        {% for var in form.variables|sort %}
             <p>
             {{ form[var].label }}:
             {{ form[var] }}
