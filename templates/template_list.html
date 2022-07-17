@@ -7,7 +7,7 @@
 <h3>Available Jinja2 templates:</h3>
   <ul>
     {% for i in items %}
-     <li> <a href="/api/{{ template_folder }}/{{ i }}">{{ i }}</a> </li>
+    <li>{{ i }} (<a href="/forms/{{ i }}">form generator</a> | <a href="/{{ template_folder }}/{{ i }}">raw text</a>)</li>
     {% endfor %}
   <ul>
 </div>

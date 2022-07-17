@@ -42,7 +42,7 @@ In this case you can directly copy your templates to the `templates/` directory.
 
 To render a template, send a POST request to `http://hostname[:port]/templates/<template-name>`, with the variables to be rendered as either `application/json` or `application/x-www-form-urlencoded` data. Specify the type of data inside the request's headers' `content-type` field.
 
-Both will return a JSON string with a singe key:value pair, the key being `result` and the value being a string containing the rendered template.
+Send JSON will return a JSON object with a singe key:value pair, the key being `result` and the value being a string containing the rendered template. 
 
 Example:
 
@@ -51,8 +51,9 @@ Example:
     "result": "This string contains your rendered template data\nCheers!"
 }
 ```
+Sending form data will return the rendered template as plain text.
 
-You can send a GET request to the API endpoint to retrieve the template in plain text.
+You can also send a GET request to the API endpoint to retrieve the raw template in plain text.
 
 ### Web GUI
 
@@ -62,6 +63,7 @@ Browse to `http://hostname[:port]/` to display the homepage, which will list the
 
 For each template you can use the automatic form generator at `http://hostname/forms/<template-name>`.
 
+Caveat: at the time of this writing, the variables' input fields are ordered alphabetically instead of following the order the variables appear in the template.
 
 
 ## License

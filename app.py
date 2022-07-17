@@ -58,14 +58,14 @@ def template_engine(template_name: str):
     # Use the POST method to render the template
     elif request.method == "POST":
 
-        # We accept both JSON and urlencoded data and return the result as JSON
+        # If we receive the request as application/json we return JSON
         if request.content_type == "application/json":
             variables = request.get_json()
+            return jsonify(result=render_template(template_file, **variables))
+        # If we receive the request as application/x-www-for-urlencoded we return plain text
         elif request.content_type == "application/x-www-form-urlencoded":
             variables = request.form.to_dict()
-
-        # In both cases we return JSON with the rendered template inside the "result" key
-        return jsonify(result=render_template(template_file, **variables))
+            return Response(response=render_template(template_file, **variables), mimetype="text/plain")
 
 
 @app.route("/forms/<template_name>", methods=["GET"])
