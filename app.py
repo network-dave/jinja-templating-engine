@@ -4,6 +4,7 @@ import glob
 from flask import Flask, request, Response, render_template, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from flask_bootstrap import Bootstrap5
 
 from jinja2 import Environment, FileSystemLoader, meta
 
@@ -16,6 +17,9 @@ app = Flask(__name__)
 
 # Needed for CSRF protection, else WTForms will not run 
 app.config['SECRET_KEY'] = 'any secret string'
+
+# Bootstrap the app thanks to Bootstrap-Flask
+bootstrap = Bootstrap5(app)
 
 
 @app.route("/", methods=["GET"])

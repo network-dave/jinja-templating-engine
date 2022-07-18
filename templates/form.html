@@ -1,21 +1,16 @@
-<html>
-<body>
-<div>
-<h2>Jinja Templating Engine - Form Generator</h2>
-<h3>{{ template_name }}</h3>
-</div>
-<div>
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+{% block content %}
+<div class="w-50 m-3">
+    <p>
+    <h2>Jinja Templating Engine Form Generator</h2>
+    </p>
+    <p>
+    <h4>{{ template_name }}</h4>
+    </p>
     <form method="POST" action="/templates/{{ template_name }}">
-        <fieldset class="form-field">
-        {% for var in form.variables|sort %}
-            <p>
-            {{ form[var].label }}:
-            {{ form[var] }}
-            </p>
-        {% endfor %}
-        </fieldset>
-        <p>{{ form.submit }}</p>
+    {{ render_form(form) }}
     </form>
 </div>
-</body>
-</html>
+{% endblock %}
