@@ -91,7 +91,7 @@ def form_generator(template_name: str):
         variables = meta.find_undeclared_variables(parsed_content)
     
         # For each variable in the template, generate an input field in the web form (sorted alphabetically)
-        for v in variables:
+        for v in sorted(variables):
             vars()[v] = StringField(v.capitalize())
             
         submit = SubmitField("Submit")
