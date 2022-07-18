@@ -18,7 +18,10 @@ app = Flask(__name__)
 # Needed for CSRF protection, else WTForms will not run 
 app.config['SECRET_KEY'] = 'any secret string'
 
-# Bootstrap the app thanks to Bootstrap-Flask
+# Load Bootstrap files from local resources instead of CDN
+app.config["BOOTSTRAP_SERVE_LOCAL"] = True
+
+# Bootstrap the app using to Bootstrap-Flask
 bootstrap = Bootstrap5(app)
 
 
