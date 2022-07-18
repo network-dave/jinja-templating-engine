@@ -29,11 +29,13 @@ In this case you will need to mount your local directory containe your Jinja2 te
 Alternatively, you can run the app directly through Python3 and the Flask library: 
 ```
 git clone <url>
-pip3 install flask
+cd jinja-templating-engine
+pip3 install -r requirements.txt
 python3 app.py
 ```
-In this case you can directly copy your templates to the `templates/` directory. 
+In this case you can copy your templates directly to the `templates` directory. 
 
+Note: As this is a small internall tool app, I'm using Flask's development server. Feel free to replace it with something like Gunicorn if needed.
 
 
 ## Usage

@@ -9,8 +9,8 @@ from flask_bootstrap import Bootstrap5
 from jinja2 import Environment, FileSystemLoader, meta
 
 
-# Specify the location of the Jinja2 templates
-TEMPLATE_FOLDER = os.getenv("TEMPLATE_FOLDER", "templates")
+# The directory containing the Jinja2 templates
+TEMPLATE_FOLDER = "templates"
 
 # Initialize the Flask application
 app = Flask(__name__)
