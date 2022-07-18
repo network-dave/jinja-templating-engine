@@ -11,12 +11,13 @@
             {{ bootstrap.load_css() }}
         {% endblock %}
 
-        <title>Your page title</title>
+        <title>Jinja Templating Engine/title>
         {% endblock %}
     </head>
     <body>
+        {% block content %}
         <!-- Your page content -->
-        {% block content %}{% endblock %}
+        {% endblock %}
 
         {% block scripts %}
             <!-- Optional JavaScript -->
