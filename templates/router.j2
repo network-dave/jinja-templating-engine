@@ -1,0 +1,46 @@
+! hostname configuration
+hostname {{ ROUTER_NAME }}
+
+! Configure system logging
+logging console informational
+
+! Enable SSH
+ssh server v2
+ssh server vrf default
+
+! Configure usernames and passwords
+username {{ USERNAME }} password {{ PASSWORD }} privilege 15
+
+! Configure SNMP
+snmp-server community {{ SNMP_COMMUNITY_STRING }} RO
+
+! Configure NTP
+ntp server {{ NTP_SERVER_IP }} prefer
+
+! Configure interfaces
+interface {{ INTERFACE_NAME }}
+  description {{ DESCRIPTION }}
+  ipv4 address {{ IP_ADDRESS }} {{ SUBNET_MASK }}
+  ipv6 address {{ IPV6_ADDRESS }}/{{ PREFIX_LENGTH }}
+  no shutdown
+
+! Configure OSPF routing
+router ospf {{ OSPF_PROCESS_ID }}
+  router-id {{ ROUTER_ID }}
+  area {{ AREA_ID }} interface {{ INTERFACE_NAME }}
+    cost {{ COST }}
+    passive disable
+
+! Configure BGP routing
+router bgp {{ AS_NUMBER }}
+  bgp router-id {{ ROUTER_ID }}
+  address-family ipv4 unicast
+    network {{ NETWORK }} mask {{ SUBNET_MASK }}
+  neighbor {{ NEIGHBOR_IP }}
+    remote-as {{ NEIGHBOR_AS }}
+    address-family ipv4 unicast
+      route-policy {{ ROUTE_POLICY_NAME }} in
+      route-policy {{ ROUTE_POLICY_NAME }} out
+
+! Save configuration
+commit

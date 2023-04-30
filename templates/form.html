@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% from 'bootstrap5/form.html' import render_form %}
-
 {% block content %}
 <div class="w-50 m-3">
-    <p>
-    <h2>Jinja Templating Engine</h2>
-    </p>
-    <p>
-    <h4>{{ template_name }}</h4>
-    </p>
+    <h5>{{ template_name }}</h5>
+    <br>
     <form method="POST" action="/templates/{{ template_name }}">
     {{ render_form(form) }}
     </form>

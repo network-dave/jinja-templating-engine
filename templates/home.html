@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mb-5 m-3">
+  <h5>Templates</h5>
+  <ul>
+    {% for i in items %}
+    <li><a href="/forms/{{ i }}">{{ i | capitalize }}</a> (<a href="/{{ template_folder }}/{{ i }}">raw</a>)</li>
+    {% endfor %}
+  </ul>
+  <a href="/upload">Upload a new template</a>
+</div>
+<div class="m-3">
+  <h5>Usage</h5>
+  Either use the integrated form generator to create a web form from the selected Jinja2 template, <br>
+  or send a POST request to /templates/&lttemplate-name&gt with the variables encoded as JSON inside the body. <br>
+  The response will contain the rendered template inside the "result" key.
+</div>
+{% endblock %}

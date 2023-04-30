@@ -1,10 +1,12 @@
 import os
 import glob
+import re
 
-from flask import Flask, request, Response, render_template, jsonify
+from flask import Flask, request, Response, render_template, jsonify, redirect
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from flask_bootstrap import Bootstrap5
+from werkzeug.utils import secure_filename
 
 from jinja2 import Environment, FileSystemLoader, meta
 
@@ -28,7 +30,7 @@ bootstrap = Bootstrap5(app)
 @app.route("/", methods=["GET"])
 def view_template_list():
     '''
-    Display a list of all the available templates with some quick help.
+    Homepage - Display a list of all the available templates with some quick help.
 
     '''
     # Get all the Jinja2 files inside the templates folder
@@ -37,7 +39,7 @@ def view_template_list():
     # Remove the file extension to keep only the name of the template
     template_list = [ t.strip(".j2") for t in template_list ]
 
-    return render_template("template_list.html", items=template_list, template_folder=TEMPLATE_FOLDER)
+    return render_template("home.html", items=template_list, template_folder=TEMPLATE_FOLDER)
 
 
 @app.route("/templates/<template_name>", methods=["GET", "POST"])
@@ -87,15 +89,23 @@ def form_generator(template_name: str):
         # Build the template filename from the URL endpoint
         template_file = template_name + ".j2"
 
+        # Get all variables in the Jinja2 template
+        with open(os.path.join(TEMPLATE_FOLDER, template_file)) as f:
+            data = f.read()
+
+        variables = re.findall("\{\{ (\S+) \}\}", data)
+
+        '''
         # Get all variables in the Jinja2 template (hacky...)
         env = Environment(loader=FileSystemLoader("./templates/"))
         template_source = env.loader.get_source(env, template_file)[0]
         parsed_content = env.parse(template_source)
         variables = meta.find_undeclared_variables(parsed_content)
+        '''
     
         # For each variable in the template, generate an input field in the web form (sorted alphabetically)
-        for v in sorted(variables):
-            vars()[v] = StringField(v.capitalize())
+        for v in variables:
+            vars()[v] = StringField(v)
             
         submit = SubmitField("Submit")
 
@@ -103,6 +113,23 @@ def form_generator(template_name: str):
     form = FormGenerator()
 
     return render_template("form.html", template_name=template_name.capitalize(), form=form)
+
+
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+    '''
+    Upload a file to the templates folder
+
+    '''
+    # Display the upload page
+    if request.method == "GET":
+        return render_template("upload.html")
+
+    # Upload the selected file to the templates folder
+    if request.method == "POST":
+        f = request.files["file"]
+        f.save(os.path.join(TEMPLATE_FOLDER, secure_filename(f.filename)))
+        return redirect("/")
 
 
 if __name__ == "__main__":
