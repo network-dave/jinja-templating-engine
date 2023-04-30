@@ -65,11 +65,9 @@ Browse to `http://hostname[:port]/` to display the homepage, which will list the
 
 For each template you can use the automatic form generator at `http://hostname/forms/<template-name>`.
 
-Caveat: at the time of this writing, the variables' input fields are ordered alphabetically instead of following the order the variables appear in the template.
-
 
 ## License
 
 Licensed under the GPL v3 License - see LICENSE.md for more information.
 
-© 2022 David Paneels - dpaneels@protonmail.com
+© 2023 David Paneels - dpaneels@protonmail.com
