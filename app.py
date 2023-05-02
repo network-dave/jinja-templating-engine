@@ -112,7 +112,7 @@ def form_generator(template_name: str):
     # Create the form object to be rendered
     form = FormGenerator()
 
-    return render_template("form.html", template_name=template_name.capitalize(), form=form)
+    return render_template("form.html", template_name=template_name, form=form)
 
 
 @app.route("/upload", methods=["GET", "POST"])
