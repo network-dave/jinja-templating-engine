@@ -4,7 +4,7 @@
   <h5>Templates</h5>
   <ul>
     {% for i in items %}
-    <li><a href="/forms/{{ i }}">{{ i | capitalize }}</a> (<a href="/{{ template_folder }}/{{ i }}">raw</a>)</li>
+    <li><a href="/forms/{{ i }}">{{ i }}</a> (<a href="/{{ template_folder }}/{{ i }}">raw</a>)</li>
     {% endfor %}
   </ul>
   <a href="/upload">Upload a new template</a>
